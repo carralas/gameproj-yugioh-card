@@ -1,4 +1,6 @@
 @import "./reset.css";
+@import "./buttons.css";
+@import "./containers_and_frames.css";
 
 .background {
     width: 100vw;
@@ -28,4 +30,65 @@
 
 .background .video {
     height: 100vh;
+}
+
+main {
+    height: 100vh;
+    z-index: 3;
+
+    display: flex;
+
+    position: relative;
+}
+
+.left-screen {
+    width: 30%;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.score {
+    width: 100%;
+    
+    background-color: #ffffffbf;
+
+    border: 5px solid #000000;
+    border-radius: .25rem;
+
+    padding: 1rem;
+}
+
+.card-face {
+
+}
+
+#card-image {
+
+}
+
+.card-detail {
+    width: 100%;
+    height: 5rem;
+
+    background-color: #ffffffbf;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 5px solid #000000;
+    border-radius: .25rem;
+
+    padding: 1rem;
+}
+
+#card-name {
+    font-size: .75rem;
+}
+
+#card-type {
+    font-size: 1rem;
 }
