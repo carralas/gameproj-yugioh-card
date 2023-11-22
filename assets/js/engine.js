@@ -5,6 +5,8 @@ const state = {
         cardInfoFace: document.querySelector('#card-image'),
         cardInfoName: document.querySelector('#card-name'),
         cardInfoType: document.querySelector('#card-type'),
+        handPlayer: document.querySelector('#player-hand'),
+        handEnemy: document.querySelector('#enemy-hand'),
         cardBattlePlayer: document.querySelector('#player-card'),
         cardBattleEnemy: document.querySelector('#enemy-card'),
         button: document.querySelector('#advance')
@@ -43,7 +45,49 @@ const state = {
     ]
 }
 
+async function drawCards(side) {
+    for (let k = 0; k < 5; k++) {
+        const randomID = await getRandomID();
+        console.log(randomID)
+        const card = await createCard(randomID, side);
+
+        if (side === 'player') {
+            state.view.handPlayer.appendChild(card);
+        } else {
+            state.view.handEnemy.appendChild(card);
+        }
+    }
+}
+
+async function getRandomID() {
+    let randomID = Math.floor(Math.random()*state.cards.length);
+    return state.cards[randomID].id;
+}
+
+async function createCard(id, side) {
+    let card = document.createElement('img');
+    card.setAttribute('heigth', '100px');
+    card.setAttribute('src', './assets/img/card-back.png');
+    card.setAttribute('data-id', id);
+    card.classList.add('card');
+
+    if (side === 'player') {
+        card.addEventListener('click', () => {
+            setCard(card.getAttribute('data-id'));
+        });
+    }
+
+    card.addEventListener('mouseover', () => {
+        drawCard(id);
+    });
+
+    console.log(card)
+    return card;
+}
+
 function main() {
+    drawCards('player');
+    drawCards('enemy');
 }
 
 main();
