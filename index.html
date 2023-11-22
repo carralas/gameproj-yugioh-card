@@ -14,6 +14,7 @@
             <source src="./assets/video/yugi.mp4" type="video/mp4" />
         </video>
     </div>
+
     <main>
             <div class="left-screen framed-golden-2">
                 <div class="score">
@@ -29,7 +30,27 @@
                     <div id="card-type">Card Type</div>
                 </div>
             </div>
-            <div class="right-screen"></div>
+
+            <div class="right-screen">
+                <div class="card-hand framed" id="enemy-hand">
+                    
+                </div>
+                <div class="battlefield">
+                    <div class="combat">
+                        <div class="card-box">
+                            <img class="player-card" id="player-card" />
+                        </div>
+                        <img class="duel-symbol" src="./assets/img/millenium2.png">
+                        <div class="card-box">
+                            <img class="player-card" id="enemy-card" />
+                        </div>
+                    </div>
+                    <button class="rpgui-button" id="advance">Button</button>
+                </div>
+                <div class="card-hand framed" id="player-hand">
+                    
+                </div>
+            </div>
     </main>
 
     <script src="./assets/js/engine.js" defer></script>

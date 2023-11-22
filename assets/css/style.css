@@ -42,7 +42,7 @@ main {
 }
 
 .left-screen {
-    width: 30%;
+    width: 25%;
     
     flex-direction: column;
     align-items: center;
@@ -91,4 +91,64 @@ main {
 
 #card-type {
     font-size: 1rem;
+}
+
+.right-screen {
+    width: 75%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: .5rem;
+}
+
+.card-hand {
+    width: 100%;
+    height: 10rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.battlefield {
+    height: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: .375rem;
+}
+
+.battlefield .combat, .battlefield button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: .25rem;
+}
+
+.card-box {
+    width: 7.5rem;
+    height: 10rem;
+
+    border: 1px solid #ffffffbf;
+    border-radius: .25rem;
+}
+
+.played-card {
+    height: 180px;
+    width: 125px;
+}
+
+.duel-symbol {
+    height: 100px;
+}
+
+#advance {
+    display: none;
 }
