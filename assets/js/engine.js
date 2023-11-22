@@ -48,7 +48,6 @@ const state = {
 async function drawCards(side) {
     for (let k = 0; k < 5; k++) {
         const randomID = await getRandomID();
-        console.log(randomID)
         const card = await createCard(randomID, side);
 
         if (side === 'player') {
@@ -81,7 +80,6 @@ async function createCard(id, side) {
         drawCard(id);
     });
 
-    console.log(card)
     return card;
 }
 
