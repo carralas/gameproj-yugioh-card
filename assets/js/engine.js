@@ -136,7 +136,16 @@ async function updateScore() {
 async function drawButton(result) {
     state.view.button.innerText = result;
     state.view.button.style.display = 'block';
-    state.view.button.onclick = resetDuels;
+    state.view.button.onclick = resetDuel;
+}
+
+async function resetDuel() {
+    state.view.button.style.display = 'none';
+    state.view.cardInfoFace.src = '';
+    state.view.cardInfoName.innerText = '';
+    state.view.cardInfoType.innerText = '';
+
+    main();
 }
 
 function main() {
