@@ -120,12 +120,19 @@ async function checkBattleResult(id, idEnemy) {
     if (cardPlayer.strong.includes(cardEnemy.type)) {
         result = 'Victory';
         state.values.playerScore++;
+        await playAudio('win');
     } else if (cardPlayer.weak.includes(cardEnemy.type)) {
         result = 'Defeat';
         state.values.enemyScore++;
+        await playAudio('lose');
     }
 
     return result;
+}
+
+async function playAudio(src) {
+    let audio = new Audio(`./assets/audio/${src}.wav`);
+    audio.play();
 }
 
 async function updateScore() {
