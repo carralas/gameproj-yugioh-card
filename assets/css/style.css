@@ -127,20 +127,22 @@ main {
 }
 
 .battlefield {
-    height: 250px;
+    height: 300px;
 
     display: flex;
     flex-direction: column;
 
-    padding: .375rem;
+    padding: .125rem;
 }
 
 .battlefield .combat, .battlefield button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
-    margin: .25rem;
+.battlefield .combat {
+    height: 225px;
 }
 
 .card-box {
