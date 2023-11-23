@@ -153,12 +153,16 @@ main {
 }
 
 .played-card {
+    display: none;
+
     height: 180px;
     width: 125px;
 }
 
 .duel-symbol {
     height: 100px;
+
+    padding: 5px;
 }
 
 #advance {

@@ -85,6 +85,7 @@ async function createCard(id, side) {
 }
 
 async function drawCard(id) {
+    state.view.cardInfoFace.style.display = 'block';
     state.view.cardInfoFace.src = state.cards[id].img;
     state.view.cardInfoName.innerText = state.cards[id].name;
     state.view.cardInfoType.innerText = state.cards[id].type;
@@ -148,7 +149,7 @@ async function drawButton(result) {
 
 async function resetDuel() {
     state.view.button.style.display = 'none';
-    state.view.cardInfoFace.src = '';
+    state.view.cardInfoFace.style.display = 'none';
     state.view.cardInfoName.innerText = '';
     state.view.cardInfoType.innerText = '';
     state.view.cardBattlePlayer.style.display = 'none';
