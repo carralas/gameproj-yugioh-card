@@ -151,6 +151,8 @@ async function resetDuel() {
     state.view.cardInfoFace.src = '';
     state.view.cardInfoName.innerText = '';
     state.view.cardInfoType.innerText = '';
+    state.view.cardBattlePlayer.style.display = 'none';
+    state.view.cardBattleEnemy.style.display = 'none';
 
     main();
 }
