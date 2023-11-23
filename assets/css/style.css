@@ -36,7 +36,7 @@ button, #player-hand .card {
     background-image: linear-gradient(135deg, #000000, #ffd700bf);
 }
 
-.background .video {
+.background video {
     height: 100vh;
 }
 
