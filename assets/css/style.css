@@ -2,6 +2,14 @@
 @import "./buttons.css";
 @import "./containers_and_frames.css";
 
+body {
+    cursor: url('../cursor/yugicursor.png'), auto;
+}
+
+button, #player-hand .card {
+    cursor: url('../cursor/yamiyugicursorGLOW.png'), auto;
+}
+
 .background {
     width: 100vw;
     height: 100vh;
@@ -92,10 +100,12 @@ main {
 
 #card-name {
     font-size: .75rem;
+    text-align: center;
 }
 
 #card-type {
     font-size: 1rem;
+    text-align: center;
 }
 
 .right-screen {

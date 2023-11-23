@@ -96,8 +96,7 @@ async function setCard(id) {
     let idEnemy = await getRandomID();
 
     state.view.cardBattlePlayer.style.display = 'block';
-    state.view.cardBattleEnemy.style.display = 'block';
-
+    state.view.cardBattleEnemy.style.display = 'block'
     state.view.cardBattlePlayer.src = state.cards[id].img;
     state.view.cardBattleEnemy.src = state.cards[idEnemy].img;
 
