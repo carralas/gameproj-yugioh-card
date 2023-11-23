@@ -66,16 +66,17 @@ async function getRandomID() {
 async function createCard(id, side) {
     let card = document.createElement('img');
     card.classList.add('card');
-    card.setAttribute('data-id', id);
-    card.setAttribute('src', './assets/img/card-back.png');
 
     if (side === 'player') {
+        card.setAttribute('src', state.cards[id].img);
         card.addEventListener('mouseover', () => {
             drawCard(id);
         });
         card.addEventListener('click', () => {
             setCard(id);
         });
+    } else {
+        card.setAttribute('src', './assets/img/card-back.png');
     }
 
     return card;
@@ -85,6 +86,18 @@ async function drawCard(id) {
     state.view.cardInfoFace.src = state.cards[id].img;
     state.view.cardInfoName.innerText = state.cards[id].cardName;
     state.view.cardInfoType.innerText = state.cards[id].cardType;
+}
+
+async function setCard(id) {
+    let idEnemy = await getRandomID();
+
+    state.view.cardBattlePlayer.style.display = 'block';
+    state.view.cardBattleEnemy.style.display = 'block';
+
+    state.view.cardBattlePlayer.src = state.cards[id].img;
+    state.view.cardBattleEnemy.src = state.cards[idEnemy].img;
+
+    let result = checkBattleResult(id, idEnemy);
 }
 
 function main() {
