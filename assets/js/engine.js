@@ -20,17 +20,17 @@ const state = {
     cards: [
         {
             id: 0,
-            cardName: 'BEW Dragon',
+            cardName: 'Blue Eyed White Dragon',
             cardType: 'Fighter',
-            img: '../img/dragon',
+            img: './assets/img/dragon.png',
             strong: 'Mage',
             weak: 'Tank'
         },
         {
             id: 1,
-            cardName: 'B Mage',
+            cardName: 'Black Mage',
             cardType: 'Mage',
-            img: '../img/magician',
+            img: './assets/img/magician.png',
             strong: 'Tank',
             weak: 'Fighter'
         },
@@ -38,7 +38,7 @@ const state = {
             id: 2,
             cardName: 'Exodia',
             cardType: 'Tank',
-            img: '../img/exodia',
+            img: './assets/img/exodia.png',
             strong: 'Fighter',
             weak: 'Mage'
         }
@@ -65,22 +65,26 @@ async function getRandomID() {
 
 async function createCard(id, side) {
     let card = document.createElement('img');
-    card.setAttribute('heigth', '100px');
-    card.setAttribute('src', './assets/img/card-back.png');
-    card.setAttribute('data-id', id);
     card.classList.add('card');
+    card.setAttribute('data-id', id);
+    card.setAttribute('src', './assets/img/card-back.png');
 
     if (side === 'player') {
+        card.addEventListener('mouseover', () => {
+            drawCard(id);
+        });
         card.addEventListener('click', () => {
-            setCard(card.getAttribute('data-id'));
+            setCard(id);
         });
     }
 
-    card.addEventListener('mouseover', () => {
-        drawCard(id);
-    });
-
     return card;
+}
+
+async function drawCard(id) {
+    state.view.cardInfoFace.src = state.cards[id].img;
+    state.view.cardInfoName.innerText = state.cards[id].cardName;
+    state.view.cardInfoType.innerText = state.cards[id].cardType;
 }
 
 function main() {

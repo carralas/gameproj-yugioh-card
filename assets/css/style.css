@@ -44,6 +44,7 @@ main {
 .left-screen {
     width: 25%;
     
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -113,6 +114,16 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+}
+
+.card {
+    height: 100px;
+
+    transition: transform .25s;
+}
+
+.card:hover {
+    transform: scale(1.25);
 }
 
 .battlefield {
