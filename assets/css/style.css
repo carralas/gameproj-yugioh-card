@@ -60,8 +60,11 @@ main {
 
 .score {
     width: 100%;
-    
+
     background-color: #ffffffbf;
+    
+    font-size: .75rem;
+    text-align: center;
 
     border: 5px solid #000000;
     border-radius: .25rem;
