@@ -7,6 +7,8 @@ const state = {
         cardInfoType: document.querySelector('#card-type'),
         handPlayer: document.querySelector('#player-hand'),
         handEnemy: document.querySelector('#enemy-hand'),
+        scorePlayer: document.querySelector('#player-score'),
+        scoreEnemy: document.querySelector('#enemy-score'),
         cardBattlePlayer: document.querySelector('#player-card'),
         cardBattleEnemy: document.querySelector('#enemy-card'),
         button: document.querySelector('#advance')
@@ -20,27 +22,27 @@ const state = {
     cards: [
         {
             id: 0,
-            cardName: 'Blue Eyed White Dragon',
-            cardType: 'Fighter',
+            name: 'Blue Eyed White Dragon',
+            type: 'Fighter',
             img: './assets/img/dragon.png',
-            strong: 'Mage',
-            weak: 'Tank'
+            strong: ['Mage'],
+            weak: ['Tank']
         },
         {
             id: 1,
-            cardName: 'Black Mage',
-            cardType: 'Mage',
+            name: 'Black Mage',
+            type: 'Mage',
             img: './assets/img/magician.png',
-            strong: 'Tank',
-            weak: 'Fighter'
+            strong: ['Tank'],
+            weak: ['Fighter']
         },
         {
             id: 2,
-            cardName: 'Exodia',
-            cardType: 'Tank',
+            name: 'Exodia',
+            type: 'Tank',
             img: './assets/img/exodia.png',
-            strong: 'Fighter',
-            weak: 'Mage'
+            strong: ['Fighter'],
+            weak: ['Mage']
         }
     ]
 }
@@ -84,11 +86,12 @@ async function createCard(id, side) {
 
 async function drawCard(id) {
     state.view.cardInfoFace.src = state.cards[id].img;
-    state.view.cardInfoName.innerText = state.cards[id].cardName;
-    state.view.cardInfoType.innerText = state.cards[id].cardType;
+    state.view.cardInfoName.innerText = state.cards[id].name;
+    state.view.cardInfoType.innerText = state.cards[id].type;
 }
 
 async function setCard(id) {
+    await blockHands();
     let idEnemy = await getRandomID();
 
     state.view.cardBattlePlayer.style.display = 'block';
@@ -97,7 +100,43 @@ async function setCard(id) {
     state.view.cardBattlePlayer.src = state.cards[id].img;
     state.view.cardBattleEnemy.src = state.cards[idEnemy].img;
 
-    let result = checkBattleResult(id, idEnemy);
+    let result = await checkBattleResult(id, idEnemy);
+    await updateScore();
+    await drawButton(result);
+}
+
+async function blockHands() {
+    handPlayer = state.view.handPlayer.querySelectorAll('img');
+    handEnemy = state.view.handEnemy.querySelectorAll('img');
+    handPlayer.forEach(card => card.remove());
+    handEnemy.forEach(card => card.remove());
+}
+
+async function checkBattleResult(id, idEnemy) {
+    let cardPlayer = state.cards[id];
+    let cardEnemy = state.cards[idEnemy];
+    let result = 'Draw';
+
+    if (cardPlayer.strong.includes(cardEnemy.type)) {
+        result = 'Victory';
+        state.values.playerScore++;
+    } else if (cardPlayer.weak.includes(cardEnemy.type)) {
+        result = 'Defeat';
+        state.values.enemyScore++;
+    }
+
+    return result;
+}
+
+async function updateScore() {
+    state.view.scorePlayer.innerText = state.values.playerScore;
+    state.view.scoreEnemy.innerText = state.values.enemyScore;
+}
+
+async function drawButton(result) {
+    state.view.button.innerText = result;
+    state.view.button.style.display = 'block';
+    state.view.button.onclick = resetDuels;
 }
 
 function main() {
